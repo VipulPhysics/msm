@@ -1,0 +1,157 @@
+import os
+import json
+import numpy as np
+from PIL import Image, ImageDraw
+from skimage.feature import graycomatrix, graycoprops, local_binary_pattern
+from skimage.color import rgb2gray
+from skimage.measure import shannon_entropy
+from skimage.filters import gabor
+from scipy.stats import skew, kurtosis
+from collections import defaultdict
+import pandas as pd
+from tqdm import tqdm
+from sklearn.preprocessing import MinMaxScaler
+
+
+def load_coco_json(json_path):
+    with open(json_path, 'r') as f:
+        return json.load(f)
+
+def build_annotation_index(coco_data):
+    img_id_to_file = {img['id']: img['file_name'] for img in coco_data['images']}
+    cat_id_to_name = {cat['id']: cat['name'] for cat in coco_data['categories']}
+    file_to_annotations = defaultdict(list)
+    for ann in coco_data['annotations']:
+        filename = img_id_to_file[ann['image_id']]
+        ann['category_name'] = cat_id_to_name.get(ann['category_id'], "unknown")
+        file_to_annotations[filename].append(ann)
+    return file_to_annotations
+
+def create_category_mask(image_size, annotations, category):
+    mask = Image.new('1', image_size, 0)
+    draw = ImageDraw.Draw(mask)
+    for ann in annotations:
+        if ann['category_name'] != category:
+            continue
+        for seg in ann.get('segmentation', []):
+            points = [(seg[i], seg[i + 1]) for i in range(0, len(seg), 2)]
+            draw.polygon(points, fill=1)
+    return np.array(mask)
+
+def compute_texture_features(region_pixels):
+    if region_pixels.ndim == 3:  # RGB
+        gray = rgb2gray(region_pixels) * 255
+    else:
+        gray = region_pixels
+
+    gray = gray.astype(np.uint8)
+
+    if gray.size < 100:
+        return None
+
+    if gray.ndim == 1:
+        return None
+
+    patch_size = min(gray.shape[0], gray.shape[1], 64)
+    patch = gray[:patch_size, :patch_size]
+
+    glcm = graycomatrix(patch, distances=[1], angles=[0], levels=256, symmetric=True, normed=True)
+    contrast = graycoprops(glcm, 'contrast')[0, 0]
+    energy = graycoprops(glcm, 'energy')[0, 0]
+    homogeneity = graycoprops(glcm, 'homogeneity')[0, 0]
+
+    lbp = local_binary_pattern(patch, P=8, R=1, method='uniform')
+    lbp_hist, _ = np.histogram(lbp.ravel(), bins=np.arange(0, 11), density=True)
+    lbp_energy = np.sum(lbp_hist ** 2)
+    lbp_entropy = -np.sum(lbp_hist * np.log2(lbp_hist + 1e-10))
+
+    mean_intensity = np.mean(patch)
+    entropy = shannon_entropy(patch)
+    skewness = skew(patch.flatten())
+    kurt = kurtosis(patch.flatten())
+
+    # Gabor features
+    gabor_real, gabor_imag = gabor(patch, frequency=0.6)
+    gabor_mean = np.mean(gabor_real)
+    gabor_std = np.std(gabor_real)
+
+    return {
+        "Mean": mean_intensity,
+        "Contrast": contrast,
+        "Energy": energy,
+        "Entropy": entropy,
+        "Homogeneity": homogeneity,
+        "Skewness": skewness,
+        "Kurtosis": kurt,
+        "LBP_Energy": lbp_energy,
+        "LBP_Entropy": lbp_entropy,
+        "Gabor_Mean": gabor_mean,
+        "Gabor_Std": gabor_std
+    }
+
+def extract_features(root_folder, coco_json_path, image_types=["r_", "g_", "b_", "w_", "unmixed1_", "unmixed2_"]):
+    categories = ["n_ovary", "b_v", "h_nc", "tumour"]
+    coco_data = load_coco_json(coco_json_path)
+    file_to_annotations = build_annotation_index(coco_data)
+
+    results = []
+
+    for subdir, _, files in os.walk(root_folder):
+        for file in files:
+            if not file.startswith("w_") or not file.endswith(".png"):
+                continue
+
+            annotations = file_to_annotations.get(file, [])
+            if not annotations:
+                continue
+
+            basename = file.replace("w_", "")
+            rel_dir = os.path.relpath(subdir, root_folder)
+
+            for img_prefix in image_types:
+                fname = f"{img_prefix}{basename}"
+                img_path = os.path.join(subdir, fname)
+                if not os.path.exists(img_path):
+                    continue
+
+                img = Image.open(img_path).convert("RGB")
+                img_np = np.array(img)
+
+                for cat in categories:
+                    mask = create_category_mask(img.size, annotations, cat)
+                    if not np.any(mask):
+                        continue
+
+                    region_pixels = img_np[mask == 1]
+                    if region_pixels.ndim == 1:
+                        region_pixels = region_pixels[:, np.newaxis]
+
+                    feats = compute_texture_features(region_pixels)
+                    if feats is None:
+                        continue
+
+                    results.append({
+                        "Folder": rel_dir,
+                        "File": fname,
+                        "Category": cat,
+                        **feats
+                    })
+
+    df = pd.DataFrame(results)
+
+    # Normalize texture features between 0 and 1
+    feature_cols = [col for col in df.columns if col not in ["Folder", "File", "Category"]]
+    scaler = MinMaxScaler()
+    df[feature_cols] = scaler.fit_transform(df[feature_cols])
+
+    return df
+
+# ---- Main ---- #
+if __name__ == "__main__":
+    ROOT_IMAGE_FOLDER = r"H:\\Granulosa_data_1\\vipul_annotation_1"
+    COCO_JSON_PATH = r"H:\\Granulosa_data_1\\vipul_annotation_1\\annotation_27_05_25_vipul_3.json"
+    OUTPUT_CSV = r"D:\\MSM_TMI\\category_texture_features_extended_6.csv"
+
+    df = extract_features(ROOT_IMAGE_FOLDER, COCO_JSON_PATH)
+    df.to_csv(OUTPUT_CSV, index=False)
+    print(f"✅ Extended texture features saved to: {OUTPUT_CSV}")
