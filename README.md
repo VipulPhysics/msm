@@ -6,6 +6,9 @@ This repository contains the dataset and related scripts for the development of 
 
 The MSM project aims to provide a cost-effective, real-time multispectral imaging system for tissue analysis in pathology and biomedical research. The dataset supports research and development for intelligent multispectral imaging using standard brightfield microscopes, machine vision cameras, and single-board computers.
 
+# NEWS
+- Code is still updating.
+- Dataset will be provided on request.
 ## Features
 
 - Multispectral image data for tissue classification and analysis
