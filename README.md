@@ -32,6 +32,19 @@ Raspberry Pi Pin 19 (MOSI / GPIO 10) ➝ DotStar DI
 
 Raspberry Pi Pin 23 (SCLK / GPIO 11) ➝ DotStar CI
 
+# Image Acquisition
+- Triger the LED matrix from SBC
+- R, G, and B threshold values
+
+ for 631 nm, they are (130-255, 0-70, 0-50); 
+ 
+ for 519 nm, (0-70, 130-255, 0-155);
+ 
+ for 463 nm, (0-50, 40-170, 160-255);
+ 
+ for bright field, (0-255, 0-255, 0-255)
+  
+- Upload the custum code on MV camera on chip for recognising the illumination threshold value
 # Dataset
 ## Dataset for spectral unmixing
 
