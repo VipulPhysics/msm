@@ -25,6 +25,7 @@ The MSM project aims to provide a cost-effective, real-time multispectral imagin
 
 # Hardware setting
 ![msm](circuit_connection.png)
+![msm](system_1.png)
 - Connect the MV camera with the SBC via USB
 - Connect the LED matrix with SBC via SPI communication
 
