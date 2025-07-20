@@ -48,8 +48,11 @@ Raspberry Pi Pin 23 (SCLK / GPIO 11) ➝ DotStar CI
 - Upload the custum code on MV camera on chip for recognising the illumination threshold value
 - The GUI script ![msm](led_cam_vca.py)  run the camera IDE in backend and capture and pre-process the images and then tranfer to the SBC
 - save the vca-python.py script in the same folder where the smages are saved on SBC
-- click on the VCA unmixing button on GUI for spectral unmixing 
-# Dataset
+- click on the VCA unmixing button on GUI for spectral unmixing
+- 
+# ML Models for tissue classification
+The tissue classification models in this repo use SVMs, RF amd XGboost trained on multispectral imaging data to improve tissue identification accuracy.
+This approach is especially useful in pathology for identifying tumors and other conditions. Performance is measured using metrics like accuracy. In the context provided, SVMs trained on multispectral data achieved an accuracy of 0.94, outperforming models trained only on brightfield images.
 
 
 
