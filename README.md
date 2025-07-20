@@ -61,9 +61,10 @@ The resulting phantom was imaged using the MSM system to generate multispectral 
 These images were subsequently processed through spectral unmixing, which successfully distinguished the two chemicals as separate endmembers. 
 This process demonstrates the system’s specificity and capability to accurately identify and map different endmembers within MS images.
 ![msm](phantom_study.png)
-# ML Models for tissue classification
+# GCT Tissue Classification
 The tissue classification models in this repo use SVMs, RF amd XGboost trained on multispectral imaging data to improve tissue identification accuracy.
 This approach is especially useful in pathology for identifying tumors and other conditions. Performance is measured using metrics like accuracy. In the context provided, SVMs trained on multispectral data achieved an accuracy of 0.94, outperforming models trained only on brightfield images.
+![msm](tissue_classification.png)
 
 
 
