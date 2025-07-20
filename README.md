@@ -14,14 +14,10 @@ The MSM project aims to provide a cost-effective, real-time multispectral imagin
 - Instructions for setting up the MSM hardware and software environment
 
 ## Requirements
-
-- Python 3.7 or higher
-- [conda](https://docs.conda.io/en/latest/)
+-https://www.adafruit.com/product/3449?srsltid=AfmBOopNEwkcLEtwoHod-NYRx_wcHlTKsFRxJDIoc3XFVqxqCF--k1Ft
+- https://github.com/koendv/openmv-ide-raspberrypi 
 - All required packages listed in `environment.yml`
 - Jupyter Notebook
-- (Optional) Raspberry Pi for hardware integration
+- Raspberry Pi for hardware integration
 
-To install dependencies:
-```bash
-conda env create -f environment.yml
-conda activate msm-env
+
