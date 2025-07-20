@@ -16,8 +16,23 @@ The MSM project aims to provide a cost-effective, real-time multispectral imagin
 ## Requirements
 - https://www.adafruit.com/product/3449?srsltid=AfmBOopNEwkcLEtwoHod-NYRx_wcHlTKsFRxJDIoc3XFVqxqCF--k1Ft
 - https://github.com/koendv/openmv-ide-raspberrypi 
-- All required packages listed in `environment.yml`
 - Jupyter Notebook
 - Raspberry Pi for hardware integration
+- All requirement packages are provided in the initial of the all script
+
+# Hardware setting
+- Connect the MV camera with the SBC via USB
+- Connect the LED matrix with SBC via SPI communication
+
+Raspberry Pi Pin 2 (5V) ➝ DotStar VIN
+
+Raspberry Pi Pin 6 (GND) ➝ DotStar GND
+
+Raspberry Pi Pin 19 (MOSI / GPIO 10) ➝ DotStar DI
+
+Raspberry Pi Pin 23 (SCLK / GPIO 11) ➝ DotStar CI
+
+# Dataset
+## Dataset for spectral unmixing
 
 
