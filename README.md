@@ -55,7 +55,7 @@ Raspberry Pi Pin 23 (SCLK / GPIO 11) ➝ DotStar CI
 - save the vca-python.py script in the same folder where the smages are saved on SBC
 - click on the VCA unmixing button on GUI for spectral unmixing
 
-#Phantom Study Process
+# Phantom Study Process
 Phantom slides were prepared using a diamond knife to fabricate microfluidic channels. These channels were then filled with two different known chemicals.
 The resulting phantom was imaged using the MSM system to generate multispectral (MS) images. 
 These images were subsequently processed through spectral unmixing, which successfully distinguished the two chemicals as separate endmembers. 
