@@ -1,15 +1,27 @@
-# MSM
-The required scripts, model, and datset  for Intelligent Multrispectral Microscope Project
-# About
-This project presents an affordable, real-time multispectral imaging (MSI) system designed to enhance tissue analysis in pathology applications. We modified a standard brightfield microscope by integrating an individually addressable LED matrix, a single board computer (SBC), and a machine vision (MV) camera, enabling automated multispectral image acquisition and on-chip preprocessing. Spectral unmixing is performed onboard using a Vertex Component Analysis (VCA)-based blind unmixing algorithm, providing unique spectral signatures of target molecules in histopathology samples without relying on additional computational resources.
+# Affordable Multispectral Microscope (MSM) Dataset
 
-For ovarian granulosa cell tumor (GCT) classification, support vector machine (SVM) models trained on MS images achieved an accuracy of 0.94, significantly outperforming models trained only on traditional brightfield images (accuracy of 0.62). This demonstrates the superior tissue discrimination and diagnostic potential of MS imaging.
+This repository contains the dataset and related scripts for the development of an affordable multispectral microscope (MSM).
 
-Our solution is cost-effective and aimed at improving precision in tissue identification by capturing and analyzing information across multiple visible wavelengths. The system is well-suited for real-time applications in rural or resource-limited healthcare settings, widening access to advanced pathological diagnostics at the point of care.
-# News 
-. Code is Still updating
-# MSMS system 
-# LED illumination
+## Overview
+
+The MSM project aims to provide a cost-effective, real-time multispectral imaging system for tissue analysis in pathology and biomedical research. The dataset supports research and development for intelligent multispectral imaging using standard brightfield microscopes, machine vision cameras, and single-board computers.
+
+## Features
+
+- Multispectral image data for tissue classification and analysis
+- Ready-to-use Jupyter Notebooks for data exploration and modeling
+- Python scripts for preprocessing, analysis, and visualization
+- Instructions for setting up the MSM hardware and software environment
+
+## Requirements
+
+- Python 3.7 or higher
+- [conda](https://docs.conda.io/en/latest/)
+- All required packages listed in `environment.yml`
+- Jupyter Notebook
+- (Optional) Raspberry Pi for hardware integration
+
+To install dependencies:
+```bash
 conda env create -f environment.yml
-# Image acquisition and preprocessing
-A machine vision camera connected to the singe board computer (raspberry pi) through USB.
+conda activate msm-env
