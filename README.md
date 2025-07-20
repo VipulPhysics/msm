@@ -54,7 +54,13 @@ Raspberry Pi Pin 23 (SCLK / GPIO 11) ➝ DotStar CI
 - The GUI script ![msm](led_cam_vca.py)  run the camera IDE in backend and capture and pre-process the images and then tranfer to the SBC
 - save the vca-python.py script in the same folder where the smages are saved on SBC
 - click on the VCA unmixing button on GUI for spectral unmixing
-- 
+
+#Phantom Study Process
+Phantom slides were prepared using a diamond knife to fabricate microfluidic channels. These channels were then filled with two different known chemicals.
+The resulting phantom was imaged using the MSM system to generate multispectral (MS) images. 
+These images were subsequently processed through spectral unmixing, which successfully distinguished the two chemicals as separate endmembers. 
+This process demonstrates the system’s specificity and capability to accurately identify and map different endmembers within MS images.
+![msm](phantom_study.png)
 # ML Models for tissue classification
 The tissue classification models in this repo use SVMs, RF amd XGboost trained on multispectral imaging data to improve tissue identification accuracy.
 This approach is especially useful in pathology for identifying tumors and other conditions. Performance is measured using metrics like accuracy. In the context provided, SVMs trained on multispectral data achieved an accuracy of 0.94, outperforming models trained only on brightfield images.
