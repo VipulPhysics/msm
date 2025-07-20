@@ -32,7 +32,7 @@ Raspberry Pi Pin 19 (MOSI / GPIO 10) ➝ DotStar DI
 
 Raspberry Pi Pin 23 (SCLK / GPIO 11) ➝ DotStar CI
 
-# Image Acquisition
+# Image Acquisition and spectral unmixing
 - Triger the LED matrix from SBC
 - R, G, and B threshold values
 
@@ -45,7 +45,10 @@ Raspberry Pi Pin 23 (SCLK / GPIO 11) ➝ DotStar CI
  for bright field, (0-255, 0-255, 0-255)
   
 - Upload the custum code on MV camera on chip for recognising the illumination threshold value
+- The GUI script ![msm](led_cam_vca.py)  run the camera IDE in backend and capture and pre-process the images and then tranfer to the SBC
+- save the vca-python.py script in the same folder where the smages are saved on SBC
+- click on the VCA unmixing button on GUI for spectral unmixing 
 # Dataset
-## Dataset for spectral unmixing
+
 
 
