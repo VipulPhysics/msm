@@ -33,6 +33,7 @@ Raspberry Pi Pin 19 (MOSI / GPIO 10) ➝ DotStar DI
 Raspberry Pi Pin 23 (SCLK / GPIO 11) ➝ DotStar CI
 
 # Image Acquisition and spectral unmixing
+![msm](gui.png)
 - Triger the LED matrix from SBC
 - R, G, and B threshold values
 
