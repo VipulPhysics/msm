@@ -6,5 +6,10 @@ This project presents an affordable, real-time multispectral imaging (MSI) syste
 For ovarian granulosa cell tumor (GCT) classification, support vector machine (SVM) models trained on MS images achieved an accuracy of 0.94, significantly outperforming models trained only on traditional brightfield images (accuracy of 0.62). This demonstrates the superior tissue discrimination and diagnostic potential of MS imaging.
 
 Our solution is cost-effective and aimed at improving precision in tissue identification by capturing and analyzing information across multiple visible wavelengths. The system is well-suited for real-time applications in rural or resource-limited healthcare settings, widening access to advanced pathological diagnostics at the point of care.
-
+# News 
+. Code is Still updating
 # MSMS system 
+# LED illumination
+
+# Image acquisition and preprocessing
+A machine vision camera connected to the singe board computer (raspberry pi) through USB.
