@@ -10,6 +10,6 @@ Our solution is cost-effective and aimed at improving precision in tissue identi
 . Code is Still updating
 # MSMS system 
 # LED illumination
-
+conda env create -f environment.yml
 # Image acquisition and preprocessing
 A machine vision camera connected to the singe board computer (raspberry pi) through USB.
