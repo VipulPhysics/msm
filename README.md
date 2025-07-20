@@ -14,7 +14,7 @@ The MSM project aims to provide a cost-effective, real-time multispectral imagin
 - Instructions for setting up the MSM hardware and software environment
 
 ## Requirements
--https://www.adafruit.com/product/3449?srsltid=AfmBOopNEwkcLEtwoHod-NYRx_wcHlTKsFRxJDIoc3XFVqxqCF--k1Ft
+- https://www.adafruit.com/product/3449?srsltid=AfmBOopNEwkcLEtwoHod-NYRx_wcHlTKsFRxJDIoc3XFVqxqCF--k1Ft
 - https://github.com/koendv/openmv-ide-raspberrypi 
 - All required packages listed in `environment.yml`
 - Jupyter Notebook
