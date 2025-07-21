@@ -1,4 +1,4 @@
-# Affordable Multispectral Microscope (MSM) Dataset
+# Affordable Multispectral Microscope (MSM)
 
 This repository contains the dataset and related scripts for the development of an affordable multispectral microscope (MSM).
 
