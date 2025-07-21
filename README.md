@@ -68,6 +68,6 @@ This approach is especially useful in pathology for identifying tumors and other
 
 # Resources
 - https://solothought.com/imglab/ 
-
+- 
 
 
