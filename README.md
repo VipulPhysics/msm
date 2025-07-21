@@ -66,5 +66,8 @@ The tissue classification models in this repo use SVMs, RF amd XGboost trained o
 This approach is especially useful in pathology for identifying tumors and other conditions. Performance is measured using metrics like accuracy. In the context provided, SVMs trained on multispectral data achieved an accuracy of 0.94, outperforming models trained only on brightfield images.
 ![msm](tissue_classification.png)
 
+# Resources
+- https://solothought.com/imglab/ 
+
 
 
