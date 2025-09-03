@@ -39,7 +39,7 @@ Raspberry Pi Pin 23 (SCLK / GPIO 11) ➝ DotStar CI
 
 # Image Acquisition and spectral unmixing
 ![msm](gui.png)
-- Triger the LED matrix from SBC
+- Trigger the LED matrix from SBC
 - R, G, and B threshold values
 
  for 631 nm, they are (130-255, 0-70, 0-50); 
